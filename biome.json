@@ -215,7 +215,8 @@
         "noBannedTypes": "error",
         "noUselessThisAlias": "error",
         "noUselessTypeConstraint": "error",
-        "useArrowFunction": "error"
+        "useArrowFunction": "error",
+        "useOptionalChain": "error"
       },
       "correctness": {
         "noChildrenProp": "error",
