@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "ahmadalli.vscode-nginx-conf",
+    "bierner.markdown-mermaid",
+    "biomejs.biome",
+    "bradlc.vscode-tailwindcss",
+    "darkriszty.markdown-table-prettify",
+    "davidanson.vscode-markdownlint",
+    "humao.rest-client",
+    "ms-azuretools.vscode-containers",
+    "redhat.vscode-yaml",
+    "timonwong.shellcheck"
+  ]
+}

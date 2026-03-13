@@ -1,0 +1,90 @@
+name: Build Sᴍᴏʙᴇᴙ Tᴙᴀᴄᴋᴇᴙ
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 24
+
+jobs:
+  check:
+    runs-on: amd64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{env.NODE_VERSION}}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --prefer-offline --ignore-scripts
+
+      - name: Linting
+        run: pnpm run lint:ci
+
+      - name: Testing
+        run: pnpm run test
+
+  amd64:
+    needs: check
+    runs-on: amd64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Log into repository
+        uses: docker/login-action@v3
+        with:
+          registry: git.postfmly.com
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+
+      - name: Build and push
+        run: docker buildx build --platform linux/amd64 --tag git.postfmly.com/admin/smober:amd64 --push .
+
+  arm64:
+    needs: check
+    runs-on: arm64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Log into repository
+        uses: docker/login-action@v3
+        with:
+          registry: git.postfmly.com
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+
+      - name: Build and push
+        run: docker buildx build --platform linux/arm64 --tag git.postfmly.com/admin/smober:arm64 --push .
+
+  manifest:
+    needs: [amd64, arm64]
+    runs-on: amd64
+    steps:
+      - name: Log into repository
+        uses: docker/login-action@v3
+        with:
+          registry: git.postfmly.com
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+
+      - name: Create manifest
+        run: |
+          docker manifest create \
+            git.postfmly.com/admin/smober:latest \
+            git.postfmly.com/admin/smober:amd64 \
+            git.postfmly.com/admin/smober:arm64
+
+      - name: Push manifest
+        run: docker manifest push git.postfmly.com/admin/smober:latest

@@ -1,0 +1,99 @@
+{
+  "author": "Chris Post",
+  "description": "Smoke-free tracker",
+  "homepage": "https://github.com/chump29/smober",
+  "keywords": [
+    "smober",
+    "smoke-free",
+    "time",
+    "tracker"
+  ],
+  "license": "GPL-3.0-only",
+  "name": "smober",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chump29/smober.git"
+  },
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "vite build",
+    "build:dev": "vite",
+    "clean": "rimraf dist node_modules",
+    "lint": "pnpm run lint:biome && pnpm run lint:html && pnpm run lint:css",
+    "lint:biome": "biome check --write --verbose",
+    "lint:ci": "biome ci --verbose --reporter=default --reporter=github && pnpm run lint:html && stylelint **/*.css --formatter verbose --ignore-path .gitignore",
+    "lint:css": "stylelint **/*.css --fix --formatter verbose --ignore-path .gitignore",
+    "lint:html": "html-validator --exclude=dist --ignore-config=.htmlignore",
+    "nolyfill": "nolyfill install",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky",
+    "test": "vitest run",
+    "test:dev": "vitest"
+  },
+  "lint-staged": {
+    "*.{js,json,ts,tsx,yaml}": "biome ci --no-errors-on-unmatched",
+    "*.css": [
+      "biome ci --no-errors-on-unmatched",
+      "stylelint"
+    ],
+    "*.html": "html-validator --ignore-config=.htmlignore"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "pluralize": "^8.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.6",
+    "@tailwindcss/vite": "^4.2.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^25.5.0",
+    "@types/pluralize": "^0.0.33",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.0",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "jest-environment-jsdom": "^30.3.0",
+    "lint-staged": "^16.3.3",
+    "nolyfill": "^1.0.44",
+    "rimraf": "^6.1.3",
+    "rollup-plugin-jsx-remove-attributes": "^3.1.2",
+    "sharp": "^0.34.5",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0",
+    "vite-plugin-package-version": "^1.1.0",
+    "vite-plugin-simple-html": "^1.1.0",
+    "vite-plugin-webfont-dl": "^3.12.0",
+    "vitest": "^4.1.0",
+    "vitest-localstorage-mock": "^0.1.2",
+    "w3c-html-validator": "^2.2.0"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": "~24",
+    "pnpm": "~10"
+  },
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ],
+    "overrides": {
+      "es-set-tostringtag": "npm:@nolyfill/es-set-tostringtag@^1",
+      "hasown": "npm:@nolyfill/hasown@^1",
+      "safer-buffer": "npm:@nolyfill/safer-buffer@^1",
+      "side-channel": "npm:@nolyfill/side-channel@^1"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+services:
+  sober:
+    container_name: smober
+    image: git.postfmly.com/admin/smober:arm64
+    restart: unless-stopped
+    ports:
+      - "93:80"
+    environment:
+      - TZ=America/Chicago
+    labels:
+      - wud.display.name=Sᴍᴏʙᴇᴙ Tᴙᴀᴄᴋᴇᴙ
+      - homepage.group=Personal
+      - homepage.name=Sᴍᴏʙᴇᴙ Tᴙᴀᴄᴋᴇᴙ
+      - homepage.icon=https://smober.postfmly.com/smober.png
+      - homepage.href=https://smober.postfmly.com/
+      - homepage.description=smober.postfmly.com
+
+networks: {}
+
+x-dockge:
+  urls:
+    - https://smober.postfmly.com

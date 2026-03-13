@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="smober.png">
+  <link rel="stylesheet" href="index.css">
+  <meta charset="utf-8">
+  <meta name="robots" content="none">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body class="bg-gray-800">
+  <main>
+    <div class="text-center">
+      <img src="smober.png" alt="<%= title %> logo" title="<%= title %>" class="inline align-top min-w-0">
+    </div>
+    <div class="font-bold text-[#cc0000] text-shadow-[3px_3px_6px_#000000] text-7xl text-center">
+      <%= title %>
+    </div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="./src/main.tsx"></script>
+  </main>
+  <footer class="text-center text-xs text-gray-200/75 bg-slate-700 fixed bottom-0 w-full italic">
+    <span id="frontend"></span>
+  </footer>
+</body>
+
+</html>
