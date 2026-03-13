@@ -1,5 +1,5 @@
 services:
-  sober:
+  smober:
     container_name: smober
     image: git.postfmly.com/admin/smober:arm64
     restart: unless-stopped
