@@ -200,7 +200,7 @@ const Dashboard = (): JSX.Element => {
         {parse(years) ? <br /> : null}
         {parse(years)}
       </div>
-      {showCost ? <Cost cost={cost} showCost={showCost} weeks={parseInt(weeks)} /> : null}
+      {showCost ? <Cost cost={cost} days={parseInt(days)} showCost={showCost} /> : null}
     </>
   )
 }
