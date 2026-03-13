@@ -185,7 +185,7 @@ const Dashboard = (): JSX.Element => {
           </div>
         </form>
       </div>
-      <div className="text-4xl text-center font-bold mt-20 text-[#66ccff] font-counter">
+      <div className="text-4xl text-center font-bold mt-20 mb-10 text-[#66ccff] font-counter">
         {seconds}
         {parse(minutes) ? <br /> : null}
         {parse(minutes)}
