@@ -22,7 +22,7 @@ RUN --mount=type=cache,target=/.pnpm-store \
 
 FROM nginx:alpine
 
-LABEL org.opencontainers.image.authors="chris@postfmly.com" \
+LABEL org.opencontainers.image.authors="admin@postfmly.com" \
     org.opencontainers.image.description="Tobacco-free tracker" \
     org.opencontainers.image.licenses="GPL-3.0-only" \
     org.opencontainers.image.title="Sᴍᴏʙᴇᴙ Tᴙᴀᴄᴋᴇᴙ" \

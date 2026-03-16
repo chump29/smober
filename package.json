@@ -1,5 +1,8 @@
 {
-  "author": "Chris Post",
+  "author": {
+    "name": "Chris Post",
+    "email": "admin@postfmly.com"
+  },
   "description": "Tobacco-free tracker",
   "homepage": "https://github.com/chump29/smober",
   "keywords": [
